@@ -12,7 +12,7 @@ public class CalculatorGUI implements ActionListener{
 	private JFrame frmCalculator;
 	private JTextField txfFirstNumber;
 	private JTextField txfSecondNumber;
-	private Calculator calculator = new Calculator();
+	private BasicCalculator calculator = new BasicCalculator();
 	private JLabel lblResult = new JLabel("Result:");
 	
 	private JLabel lblFirstNumber = new JLabel("first number");
