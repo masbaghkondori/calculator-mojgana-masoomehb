@@ -195,6 +195,16 @@ public class CalculatorGUI implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == getValueFromTextField1()||) {
+			double result = calculator.add(getValueFromTextField1(), getValueFromTextField2());
+			lblResult.setText("Result: " + result);
+		}
+		
+		if (e.getSource() == btnAdd) {
+			double result = calculator.add(getValueFromTextField1(), getValueFromTextField2());
+			lblResult.setText("Result: " + result);
+		}
+		
 		if (e.getSource() == btnAdd) {
 			double result = calculator.add(getValueFromTextField1(), getValueFromTextField2());
 			lblResult.setText("Result: " + result);
@@ -214,8 +224,12 @@ public class CalculatorGUI implements ActionListener {
 			double result = calculator.pow(getValueFromTextField1(), getValueFromTextField2());
 			lblResult.setText("Result: " + result);
 		}
-		if (e.getSource() == btnCos) {
+		if (e.getSource() == btnSin) {
 			double result = calculator.sin(getValueFromTextField1());
+			lblResult.setText("Result: " + result);
+		}
+		if (e.getSource() == btnCos) {
+			double result = calculator.cos(getValueFromTextField1());
 			lblResult.setText("Result: " + result);
 		}
 		if (e.getSource() == btnSqr) {
