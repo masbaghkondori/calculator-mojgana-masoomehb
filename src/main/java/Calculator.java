@@ -1,6 +1,9 @@
 import javax.swing.JOptionPane;
 
-public class Calculator {
+
+import CalculatorInterface.BasicMathOperations;
+
+public class Calculator implements BasicMathOperations{
 	
 	public double add(double firstNumber, double secondNUmber){
 		return  firstNumber + secondNUmber;
