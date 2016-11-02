@@ -8,14 +8,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
+import java.lang.Math.*;
 
-public class CalculatorGUI implements ActionListener{
+public class CalculatorGUI implements ActionListener {
 	private JFrame frmCalculator;
 	private JTextField txfFirstNumber;
 	private JTextField txfSecondNumber;
 	private Calculator calculator = new Calculator();
 	private JLabel lblResult = new JLabel("Result:");
-	
+
 	private JLabel lblFirstNumber = new JLabel("first number");
 	private JLabel lblSecondNumber = new JLabel("second number:");
 	private JButton btnAdd = new JButton("+");
@@ -24,23 +26,22 @@ public class CalculatorGUI implements ActionListener{
 	private JButton btnDivide = new JButton("/");
 	private final JButton btnPow = new JButton("POW");
 	private final JButton btnSqr = new JButton("SQR");
-	private final JButton btnMod = new JButton("MOD");
 	private final JButton btnLog = new JButton("log");
-	private final JButton button_0 = new JButton("0");
-	private final JButton button_1 = new JButton("1");
-	private final JButton button = new JButton("2");
-	private final JButton button_2 = new JButton("3");
-	private final JButton button_3 = new JButton("4");
-	private final JButton button_4 = new JButton("5");
-	private final JButton button_5 = new JButton("6");
-	private final JButton button_6 = new JButton("7");
-	private final JButton button_7 = new JButton("8");
-	private final JButton button_8 = new JButton("9");
+	private final JButton btnRnd = new JButton("RND");
+	private final JButton btn0 = new JButton("0");
+	private final JButton btn1 = new JButton("1");
+	private final JButton btn2 = new JButton("2");
+	private final JButton btn3 = new JButton("3");
+	private final JButton btn4 = new JButton("4");
+	private final JButton btn5 = new JButton("5");
+	private final JButton btn6 = new JButton("6");
+	private final JButton btn7 = new JButton("7");
+	private final JButton btn8 = new JButton("8");
+	private final JButton btn9 = new JButton("9");
 	private final JButton btnEqual = new JButton("=");
+	private final JButton btnCos = new JButton("Cos");
 	private final JButton btnSin = new JButton("Sin");
-	private final JButton btnRnd = new JButton("rnd");
 
-	
 	/**
 	 * Create the application.
 	 */
@@ -57,38 +58,66 @@ public class CalculatorGUI implements ActionListener{
 		frmCalculator = new JFrame();
 		frmCalculator.getContentPane().setBackground(Color.CYAN);
 		frmCalculator.setTitle("Calculator");
-		frmCalculator.setBounds(100, 100, 704, 422);
+		frmCalculator.setBounds(100, 100, 355, 456);
 		frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCalculator.getContentPane().setLayout(null);
-		
+
 		txfFirstNumber = new JTextField();
 		txfFirstNumber.setBounds(116, 27, 108, 20);
 		frmCalculator.getContentPane().add(txfFirstNumber);
 		txfFirstNumber.setColumns(10);
-		
+
 		txfSecondNumber = new JTextField();
 		txfSecondNumber.setBounds(116, 58, 108, 20);
 		frmCalculator.getContentPane().add(txfSecondNumber);
-		txfSecondNumber.setColumns(10);	
-		
+		txfSecondNumber.setColumns(10);
+
 		lblFirstNumber.setBounds(10, 30, 96, 14);
 		lblSecondNumber.setBounds(10, 61, 96, 14);
 		lblResult.setBounds(20, 96, 223, 14);
 
 		btnAdd.setBounds(40, 183, 40, 25);
-		btnSubtract.setBounds(99, 183, 40, 25);	
-		btnMultiply.setBounds(151, 183, 40, 25);	
-		btnDivide.setBounds(203, 183, 40, 25);	
-		
+		btnSubtract.setBounds(99, 183, 40, 25);
+		btnMultiply.setBounds(151, 183, 40, 25);
+		btnDivide.setBounds(203, 183, 40, 25);
+
+		btnSqr.setBounds(262, 182, 40, 25);
+		btnPow.setBounds(99, 145, 40, 25);
+		btnLog.setBounds(151, 145, 40, 25);
+		btnSin.setBounds(262, 146, 40, 25);
+		btnCos.setBounds(203, 145, 40, 25);
+		btnRnd.setBounds(40, 145, 40, 25);
+		btnEqual.setBounds(262, 221, 40, 143);
+
+		btn0.setBounds(40, 339, 40, 25);
+		btn1.setBounds(40, 301, 40, 25);
+		btn2.setBounds(120, 301, 40, 25);
+		btn3.setBounds(203, 301, 40, 25);
+		btn4.setBounds(40, 263, 40, 25);
+		btn5.setBounds(120, 263, 40, 25);
+		btn6.setBounds(203, 263, 40, 25);
+		btn7.setBounds(40, 223, 40, 25);
+		btn8.setBounds(120, 223, 40, 25);
+		btn9.setBounds(203, 223, 40, 25);
+
+		btnSqr.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnSin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnCos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnPow.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLog.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEqual.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		btnRnd.setFont(new Font("Tahoma", Font.PLAIN, 14));
+
 		frmCalculator.setVisible(true);
 	}
-	
+
 	/**
 	 * Addind components to frame.
+	 * 
 	 * @param none
 	 * @return none
 	 */
-	public void addComponentsToFrame(){
+	public void addComponentsToFrame() {
 		frmCalculator.getContentPane().add(lblFirstNumber);
 		frmCalculator.getContentPane().add(lblSecondNumber);
 		frmCalculator.getContentPane().add(lblResult);
@@ -96,151 +125,112 @@ public class CalculatorGUI implements ActionListener{
 		frmCalculator.getContentPane().add(btnSubtract);
 		frmCalculator.getContentPane().add(btnMultiply);
 		frmCalculator.getContentPane().add(btnDivide);
-		btnPow.setFont(new Font("Symbol MT", Font.PLAIN, 8));
-		btnPow.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSqr.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSqr.setBounds(40, 145, 40, 25);
 		frmCalculator.getContentPane().add(btnSqr);
-		
-		btnPow.setBounds(90, 145, 40, 25);
 		frmCalculator.getContentPane().add(btnPow);
-		btnMod.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-	
-		
-		btnMod.setBounds(140, 145, 40, 25);		
-		frmCalculator.getContentPane().add(btnMod);
-		btnLog.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		btnLog.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnLog.setBounds(262, 145, 40, 25);
-		frmCalculator.getContentPane().add(btnLog);
-		
-		button_0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_0.setBounds(40, 339, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_0);
-		button_1.setBounds(40, 301,40, 25);
-		
-		frmCalculator.getContentPane().add(button_1);
-		button.setBounds(120, 301, 40, 25);
-		
-		frmCalculator.getContentPane().add(button);
-		button_2.setBounds(203, 301, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_2);
-		button_3.setBounds(40, 263, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_3);
-		button_4.setBounds(120, 263, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_4);
-		button_5.setBounds(203, 263, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_5);
-		button_6.setBounds(40, 223, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_6);
-		button_7.setBounds(120, 223, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_7);
-		button_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_8.setBounds(203, 223, 40, 25);
-		
-		frmCalculator.getContentPane().add(button_8);
-		btnEqual.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnEqual.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnEqual.setBounds(262, 221, 40, 143);
-		
-		frmCalculator.getContentPane().add(btnEqual);
-		btnSin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSin.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnSin.setBounds(262, 185, 40, 25);
-		
-		frmCalculator.getContentPane().add(btnSin);
-		btnRnd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRnd.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnRnd.setBounds(203, 145, 40, 25);
-		
 		frmCalculator.getContentPane().add(btnRnd);
+		frmCalculator.getContentPane().add(btnLog);
+		frmCalculator.getContentPane().add(btnSin);
+		frmCalculator.getContentPane().add(btnCos);
+
+		frmCalculator.getContentPane().add(btn0);
+		frmCalculator.getContentPane().add(btn1);
+		frmCalculator.getContentPane().add(btn2);
+		frmCalculator.getContentPane().add(btn3);
+		frmCalculator.getContentPane().add(btn4);
+		frmCalculator.getContentPane().add(btn5);
+		frmCalculator.getContentPane().add(btn6);
+		frmCalculator.getContentPane().add(btn7);
+		frmCalculator.getContentPane().add(btn8);
+		frmCalculator.getContentPane().add(btn9);
+		frmCalculator.getContentPane().add(btnEqual);
+
+		btnPow.setMargin(new Insets(0, 0, 0, 0));
+		btnLog.setMargin(new Insets(0, 0, 0, 0));
+		btnRnd.setMargin(new Insets(0, 0, 0, 0));
+		btnSqr.setMargin(new Insets(0, 0, 0, 0));
+		btnCos.setMargin(new Insets(0, 0, 0, 0));
+		btnSin.setMargin(new Insets(0, 0, 0, 0));
+
 	}
-		
-	
-	public void addActionListeners(){
+
+	public void addActionListeners() {
 		btnAdd.addActionListener(this);
 		btnSubtract.addActionListener(this);
 		btnMultiply.addActionListener(this);
 		btnDivide.addActionListener(this);
+		btnDivide.addActionListener(this);
+		btn0.addActionListener(this);
+		btn1.addActionListener(this);
+		btn2.addActionListener(this);
+		btn3.addActionListener(this);
+		btn4.addActionListener(this);
+		btn5.addActionListener(this);
+		btn6.addActionListener(this);
+		btn7.addActionListener(this);
+		btn8.addActionListener(this);
+		btn9.addActionListener(this);
+		btnPow.addActionListener(this);
+		btnLog.addActionListener(this);
+		btnRnd.addActionListener(this);
+		btnSqr.addActionListener(this);
+
 	}
 
-	
 	/**
 	 *
 	 * get value from text field
 	 * 
 	 * @return firstNUmber - Number that is written in the textfield
 	 **/
-	public double getValueFromTextField1(){		
-		double firstNumber = 0.0;						
-		firstNumber = Double.valueOf(txfFirstNumber.getText());		
-		return firstNumber;		
+	public double getValueFromTextField1() {
+		double firstNumber = 0.0;
+		firstNumber = Double.valueOf(txfFirstNumber.getText());
+		return firstNumber;
 	}
-	
-	public double getValueFromTextField2(){		
-		double secondNumber = 0.0;						
-		secondNumber = Double.valueOf(txfSecondNumber.getText());		
-		return secondNumber;		
-	}	
-	
-	
-	
+
+	public double getValueFromTextField2() {
+		double secondNumber = 0.0;
+		secondNumber = Double.valueOf(txfSecondNumber.getText());
+		return secondNumber;
+	}
+
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnAdd){
+		if (e.getSource() == btnAdd) {
 			double result = calculator.add(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: "+result);
-		}		
-		
-		if (e.getSource() == btnSubtract){
+			lblResult.setText("Result: " + result);
+		}
+
+		if (e.getSource() == btnSubtract) {
 			double result = calculator.subtract(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: "+result);
+			lblResult.setText("Result: " + result);
 		}
-		
-		if (e.getSource() == btnMultiply){
+
+		if (e.getSource() == btnMultiply) {
 			double result = calculator.multiply(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: "+result);
+			lblResult.setText("Result: " + result);
 		}
-		
-		if (e.getSource() == btnDivide){
-			double result = calculator.divide(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: "+result);		
-		}		
-		
-	}	
-	
+
+		if (e.getSource() == btnPow) {
+			double result = calculator.pow(getValueFromTextField1(), getValueFromTextField2());
+			lblResult.setText("Result: " + result);
+		}
+		if (e.getSource() == btnCos) {
+			double result = calculator.sin(getValueFromTextField1());
+			lblResult.setText("Result: " + result);
+		}
+		if (e.getSource() == btnSqr) {
+			double result = calculator.sqr(getValueFromTextField1());
+			lblResult.setText("Result: " + result);
+		}
+		if (e.getSource() == btnLog) {
+			double result = calculator.log(getValueFromTextField1());
+			lblResult.setText("Result: " + result);
+		}
+		if (e.getSource() == btnRnd) {
+			double result = calculator.rnd(getValueFromTextField1());
+			lblResult.setText("Result: " + result);
+		}
+
+	}
+
 }

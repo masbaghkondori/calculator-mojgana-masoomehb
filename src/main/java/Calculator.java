@@ -23,4 +23,11 @@ public class Calculator {
 		
 		return result;
 	}
+
+	public double pow(double firstNumber, double secondNUmber){
+		return Math.pow(firstNumber, secondNUmber);
+	}
+	public double sin(double firstNumber){
+		return Math.sin(firstNumber);
+	}
 }
