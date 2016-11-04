@@ -6,8 +6,9 @@ import java.util.logging.Logger;
 import org.junit.Test;
 
 public class CalculatorTest {
-	Calculator calculator = new Calculator();
-	public static final Logger LOG = Logger.getLogger(Calculator.class.getName());
+	BasicCalculator calculator = new BasicCalculator();
+	//AdvanceCalculator advance = new AdvanceCalculator();
+	public static final Logger LOG = Logger.getLogger(BasicCalculator.class.getName());
 	Random random = new Random();
 
 	@Test
@@ -110,57 +111,5 @@ public class CalculatorTest {
 		}
 	}
 
-
-	@Test
-	public void testSqrt() {
-		double firstNumber = 0.0;
-		double secondNumber = 0.0;
-		double result =0.0;
-		for (int i = 0; i < 50; i++) {
-			firstNumber = random.nextDouble()*100;
-			secondNumber = random.nextDouble()*100;
-			result = firstNumber / secondNumber;///////??????
-			LOG.info("Testing the divide method with the values" + firstNumber+" and "+ secondNumber);
-			assertEquals("The result should be: "+ result, calculator.????(firstNumber, secondNumber),result,0.111);
-		}
-	}
-	
-	
-	
-	
-	@Test
-	public void testPow() {
-		
-	}
-	
-	
-	
-	
-	@Test
-	public void testRoud() {
-		
-	}
-	
-	
-	
-	
-	@Test
-	public void testsin() {
-		
-	}
-	
-	
-	
-	
-	@Test
-	public void testLog() {
-		
-	}
-
-
-	@Test
-	public void testMod() {
-		
-	}
 
 }
