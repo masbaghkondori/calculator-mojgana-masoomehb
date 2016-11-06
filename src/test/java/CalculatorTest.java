@@ -7,7 +7,6 @@ import org.junit.Test;
 
 public class CalculatorTest {
 	BasicCalculator calculator = new BasicCalculator();
-	//AdvanceCalculator advance = new AdvanceCalculator();
 	public static final Logger LOG = Logger.getLogger(BasicCalculator.class.getName());
 	Random random = new Random();
 
