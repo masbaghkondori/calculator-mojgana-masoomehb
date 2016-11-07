@@ -3,12 +3,16 @@ import static org.junit.Assert.*;
 import java.util.Random;
 import java.util.logging.Logger;
 
+
 import org.junit.Test;
+
+
 
 public class CalculatorTest {
 	BasicCalculator calculator = new BasicCalculator();
 	public static final Logger LOG = Logger.getLogger(BasicCalculator.class.getName());
 	Random random = new Random();
+	
 
 	@Test
 	public void testAdd() {
@@ -22,6 +26,8 @@ public class CalculatorTest {
 			LOG.info("Testing the add method with the values: "+ firstNumber+ " and " + secondNumber);
 			assertEquals("The result should be: "+result,calculator.add(firstNumber, secondNumber), result, 0.111);
 		}
+	
+		
 	}
 
 	
@@ -109,6 +115,24 @@ public class CalculatorTest {
 			assertEquals("The result should be: "+ result, calculator.divide(firstNumber, secondNumber),result,0.111);
 		}
 	}
+	
 
-
+	@Test
+	public void testDivideZero() {
+		double firstNumber = 0.0;
+		double secondNumber = 0.0;
+		double result =0.0;
+		for (int i = 0; i < 50; i++) {
+			firstNumber = random.nextDouble()*100;
+			result = firstNumber / secondNumber;
+			LOG.info("Testing the divide method with the values" + firstNumber+" and "+ secondNumber);
+			result=calculator.divide(firstNumber, secondNumber);
+			
+			//System.out.println("result: "+result);
+			
+			assertEquals("The result should be: "+ result, calculator.divide(firstNumber, secondNumber),-1111.1111,0.111);
+		}
+	}
+	
+	
 }
