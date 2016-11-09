@@ -1,22 +1,18 @@
-/**
- * 
- * 
- * 
- */
 
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.Random;
 import java.util.logging.Logger;
-
 import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class AdvanceCalculatorTest {
 	
 	AdvanceCalculator ad = new AdvanceCalculator();
 	public static final Logger LOG = Logger.getLogger(AdvanceCalculator.class.getName());
 	Random random = new Random();
+
 
 	
 
@@ -30,6 +26,7 @@ public class AdvanceCalculatorTest {
 			LOG.info("Testing Sqrt method with the value:" + firstNumber);
 			System.out.println("result : "+result);
 			assertEquals("The result should be: "+ result, ad.calculatesquart(firstNumber),result,0.111);
+		
 		}
 	}
 	
