@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CalculatorGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">project-report-example</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">CalculatorGUI.java</span></div><h1>CalculatorGUI.java</h1><pre class="source lang-java linenums">import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Insets;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JSpinner;
+
+public class CalculatorGUI implements ActionListener {
+	private JFrame frmCalculator;
+	private JTextField txfFirstNumber;
+<span class="nc" id="L17">	private BasicCalculator calculator = new BasicCalculator();</span>
+<span class="nc" id="L18">	private AdvanceCalculator calculatorA = new AdvanceCalculator();</span>
+<span class="nc" id="L19">	private JLabel lblResult = new JLabel(&quot;Result:&quot;);</span>
+<span class="nc" id="L20">	private JButton btnAdd = new JButton(&quot;+&quot;);</span>
+<span class="nc" id="L21">	private JButton btnSubtract = new JButton(&quot;-&quot;);</span>
+<span class="nc" id="L22">	private JButton btnMultiply = new JButton(&quot;*&quot;);</span>
+<span class="nc" id="L23">	private JButton btnDivide = new JButton(&quot;/&quot;);</span>
+<span class="nc" id="L24">	private JButton btnPow = new JButton(&quot;POW&quot;);</span>
+<span class="nc" id="L25">	private JButton btnSqr = new JButton(&quot;Sqr&quot;);</span>
+<span class="nc" id="L26">	private JButton btnRND = new JButton(&quot;RND&quot;);</span>
+<span class="nc" id="L27">	private JButton btnCos = new JButton(&quot;Cos&quot;);</span>
+<span class="nc" id="L28">	private JButton btnSin = new JButton(&quot;Sin&quot;);</span>
+<span class="nc" id="L29">	private JButton btnPoint = new JButton(&quot;.&quot;);</span>
+<span class="nc" id="L30">	private final JButton btn0 = new JButton(&quot;0&quot;);</span>
+<span class="nc" id="L31">	private final JButton btn1 = new JButton(&quot;1&quot;);</span>
+<span class="nc" id="L32">	private final JButton btn2 = new JButton(&quot;2&quot;);</span>
+<span class="nc" id="L33">	private final JButton btn3 = new JButton(&quot;3&quot;);</span>
+<span class="nc" id="L34">	private final JButton btn4 = new JButton(&quot;4&quot;);</span>
+<span class="nc" id="L35">	private final JButton btn5 = new JButton(&quot;5&quot;);</span>
+<span class="nc" id="L36">	private final JButton btn6 = new JButton(&quot;6&quot;);</span>
+<span class="nc" id="L37">	private final JButton btn7 = new JButton(&quot;7&quot;);</span>
+<span class="nc" id="L38">	private final JButton btn8 = new JButton(&quot;8&quot;);</span>
+<span class="nc" id="L39">	private final JButton btn9 = new JButton(&quot;9&quot;);</span>
+<span class="nc" id="L40">	private final JButton btnEqual = new JButton(&quot;=&quot;);</span>
+<span class="nc" id="L41">	private double result = 0;</span>
+
+	/**
+	 * Create the application.
+	 */
+<span class="nc" id="L46">	public CalculatorGUI() {</span>
+<span class="nc" id="L47">		createAndShowGUI();</span>
+<span class="nc" id="L48">		addComponentsToFrame();</span>
+<span class="nc" id="L49">		addActionListeners();</span>
+<span class="nc" id="L50">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void createAndShowGUI() {
+<span class="nc" id="L56">		frmCalculator = new JFrame();</span>
+<span class="nc" id="L57">		frmCalculator.getContentPane().setBackground(Color.YELLOW);</span>
+<span class="nc" id="L58">		frmCalculator.setTitle(&quot;Calculator&quot;);</span>
+<span class="nc" id="L59">		frmCalculator.setBounds(100, 100, 311, 445);</span>
+<span class="nc" id="L60">		frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L61">		frmCalculator.getContentPane().setLayout(null);</span>
+
+<span class="nc" id="L63">		txfFirstNumber = new JTextField();</span>
+<span class="nc" id="L64">		txfFirstNumber.setBounds(22, 27, 241, 39);</span>
+<span class="nc" id="L65">		txfFirstNumber.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+
+<span class="nc" id="L67">		frmCalculator.getContentPane().add(txfFirstNumber);</span>
+<span class="nc" id="L68">		txfFirstNumber.setColumns(10);</span>
+<span class="nc" id="L69">		lblResult.setBounds(10, 86, 223, 14);</span>
+
+<span class="nc" id="L71">		btnAdd.setBounds(10, 139, 47, 23);</span>
+<span class="nc" id="L72">		btnAdd.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L73">		btnAdd.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L74">		btnSubtract.setBounds(67, 139, 44, 23);</span>
+<span class="nc" id="L75">		btnSubtract.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L76">		btnSubtract.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L77">		btnMultiply.setBounds(125, 139, 47, 23);</span>
+<span class="nc" id="L78">		btnMultiply.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L79">		btnMultiply.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L80">		btnDivide.setBounds(182, 139, 47, 23);</span>
+<span class="nc" id="L81">		btnDivide.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L82">		btnDivide.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L83">		btnPow.setBounds(10, 179, 47, 23);</span>
+<span class="nc" id="L84">		btnPow.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L85">		btnPow.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L86">		btnSqr.setBounds(67, 179, 47, 23);</span>
+<span class="nc" id="L87">		btnSqr.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L88">		btnSqr.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L89">		btnRND.setBounds(125, 179, 47, 23);</span>
+<span class="nc" id="L90">		btnRND.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L91">		btnRND.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L92">		btnCos.setBounds(182, 179, 47, 23);</span>
+<span class="nc" id="L93">		btnCos.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L94">		btnCos.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L95">		btnSin.setBounds(241, 139, 47, 23);</span>
+<span class="nc" id="L96">		btnSin.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L97">		btnSin.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L98">		btnPoint.setBounds(86, 350, 48, 25);</span>
+<span class="nc" id="L99">		btnPoint.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L100">		btnPoint.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L101">		btn0.setBounds(9, 350, 48, 25);</span>
+<span class="nc" id="L102">		btn0.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L103">		btn0.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L104">		btn1.setBounds(241, 179, 40, 25);</span>
+<span class="nc" id="L105">		btn1.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L106">		btn1.setBounds(10, 317, 48, 25);</span>
+<span class="nc" id="L107">		btn2.setBounds(76, 317, 48, 25);</span>
+<span class="nc" id="L108">		btn2.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L109">		btn2.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L110">		btn3.setBounds(143, 317, 48, 25);</span>
+<span class="nc" id="L111">		btn3.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L112">		btn3.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L113">		btn4.setBounds(9, 277, 48, 25);</span>
+<span class="nc" id="L114">		btn4.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L115">		btn4.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L116">		btn5.setBounds(76, 277, 48, 25);</span>
+<span class="nc" id="L117">		btn5.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L118">		btn5.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L119">		btn6.setBounds(143, 277, 48, 25);</span>
+<span class="nc" id="L120">		btn6.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L121">		btn6.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L122">		btn7.setBounds(10, 239, 48, 25);</span>
+<span class="nc" id="L123">		btn7.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L124">		btn7.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L125">		btn8.setBounds(76, 239, 48, 25);</span>
+<span class="nc" id="L126">		btn8.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L127">		btn8.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L128">		btn9.setBounds(143, 239, 48, 25);</span>
+<span class="nc" id="L129">		btn9.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L130">		btn9.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L131">		btnEqual.setBounds(241, 239, 40, 130);</span>
+<span class="nc" id="L132">		btnEqual.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L133">		btnEqual.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L134">		btnClean.setBounds(143, 350, 48, 25);</span>
+<span class="nc" id="L135">		btnClean.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L136">		btnClean.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L137">		frmCalculator.setVisible(true);</span>
+<span class="nc" id="L138">	}</span>
+
+	/**
+	 * Addind components to frame.
+	 * 
+	 * @param none
+	 * @return none
+	 */
+	public void addComponentsToFrame() {
+<span class="nc" id="L147">		frmCalculator.getContentPane().add(lblResult);</span>
+<span class="nc" id="L148">		frmCalculator.getContentPane().add(btnAdd);</span>
+<span class="nc" id="L149">		frmCalculator.getContentPane().add(btnSubtract);</span>
+<span class="nc" id="L150">		frmCalculator.getContentPane().add(btnMultiply);</span>
+<span class="nc" id="L151">		frmCalculator.getContentPane().add(btnDivide);</span>
+<span class="nc" id="L152">		frmCalculator.getContentPane().add(btnPow);</span>
+<span class="nc" id="L153">		frmCalculator.getContentPane().add(btnSqr);</span>
+<span class="nc" id="L154">		frmCalculator.getContentPane().add(btnRND);</span>
+<span class="nc" id="L155">		frmCalculator.getContentPane().add(btnCos);</span>
+<span class="nc" id="L156">		frmCalculator.getContentPane().add(btnSin);</span>
+<span class="nc" id="L157">		frmCalculator.getContentPane().add(btnPoint);</span>
+<span class="nc" id="L158">		frmCalculator.getContentPane().add(btn0);</span>
+<span class="nc" id="L159">		frmCalculator.getContentPane().add(btn1);</span>
+<span class="nc" id="L160">		frmCalculator.getContentPane().add(btn2);</span>
+<span class="nc" id="L161">		frmCalculator.getContentPane().add(btn3);</span>
+<span class="nc" id="L162">		frmCalculator.getContentPane().add(btn4);</span>
+<span class="nc" id="L163">		frmCalculator.getContentPane().add(btn5);</span>
+<span class="nc" id="L164">		frmCalculator.getContentPane().add(btn6);</span>
+<span class="nc" id="L165">		frmCalculator.getContentPane().add(btn7);</span>
+<span class="nc" id="L166">		frmCalculator.getContentPane().add(btn8);</span>
+<span class="nc" id="L167">		frmCalculator.getContentPane().add(btn9);</span>
+<span class="nc" id="L168">		frmCalculator.getContentPane().add(btnEqual);</span>
+<span class="nc" id="L169">		frmCalculator.getContentPane().add(btnLog);</span>
+<span class="nc" id="L170">		frmCalculator.getContentPane().add(btnClean);</span>
+		
+<span class="nc" id="L172">		btnLog.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L173">		btnLog.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L174">		btnLog.setBounds(241, 179, 47, 23);</span>
+
+<span class="nc" id="L176">	}</span>
+
+	public void addActionListeners() {
+<span class="nc" id="L179">		btnAdd.addActionListener(this);</span>
+<span class="nc" id="L180">		btnSubtract.addActionListener(this);</span>
+<span class="nc" id="L181">		btnMultiply.addActionListener(this);</span>
+<span class="nc" id="L182">		btnDivide.addActionListener(this);</span>
+<span class="nc" id="L183">		btnPow.addActionListener(this);</span>
+<span class="nc" id="L184">		btnSqr.addActionListener(this);</span>
+<span class="nc" id="L185">		btnRND.addActionListener(this);</span>
+<span class="nc" id="L186">		btnCos.addActionListener(this);</span>
+<span class="nc" id="L187">		btnSin.addActionListener(this);</span>
+<span class="nc" id="L188">		btn0.addActionListener(this);</span>
+<span class="nc" id="L189">		btn1.addActionListener(this);</span>
+<span class="nc" id="L190">		btn2.addActionListener(this);</span>
+<span class="nc" id="L191">		btn3.addActionListener(this);</span>
+<span class="nc" id="L192">		btn4.addActionListener(this);</span>
+<span class="nc" id="L193">		btn5.addActionListener(this);</span>
+<span class="nc" id="L194">		btn6.addActionListener(this);</span>
+<span class="nc" id="L195">		btn7.addActionListener(this);</span>
+<span class="nc" id="L196">		btn8.addActionListener(this);</span>
+<span class="nc" id="L197">		btn9.addActionListener(this);</span>
+<span class="nc" id="L198">		btnEqual.addActionListener(this);</span>
+<span class="nc" id="L199">		btnClean.addActionListener(this);</span>
+<span class="nc" id="L200">		btnPoint.addActionListener(this);</span>
+
+<span class="nc" id="L202">	}</span>
+
+	/**
+	 *
+	 * get value from text field
+	 * 
+	 * @return firstNUmber - Number that is written in the textfield
+	 **/
+	/*
+	 * public double getValueFromTextField1() { double firstNumber = 0.0;
+	 * firstNumber = Double.valueOf(txfFirstNumber.getText()); return
+	 * firstNumber; }
+	 */
+
+	/*
+	 * public double getValueFromTextField2() { double secondNumber = 0.0;
+	 * secondNumber = Double.valueOf(txfSecondNumber.getText()); return
+	 * secondNumber; }
+	 */
+
+<span class="nc" id="L222">	private String btnStr = &quot;&quot;;</span>
+<span class="nc" id="L223">	private boolean operationCheck = true;</span>
+<span class="nc" id="L224">	private boolean fieldCheck = false;</span>
+	private JButton btnTemp2;
+<span class="nc" id="L226">	private final JButton btnNewButton = new JButton(&quot;=&quot;);</span>
+<span class="nc" id="L227">	private double secondNumber = 0.0;</span>
+<span class="nc" id="L228">	private double firstNumber = 0.0;</span>
+<span class="nc" id="L229">	private JButton btnOperation = null;</span>
+<span class="nc" id="L230">	private final JButton btnClean = new JButton(&quot;C&quot;);</span>
+<span class="nc" id="L231">	private final JButton btnLog = new JButton(&quot;Log&quot;);</span>
+
+	public void actionPerformed(ActionEvent e) {
+		Object JButton;
+<span class="nc" id="L235">		JButton btnTemp = (JButton) e.getSource();</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">		if (e.getSource() == btnClean) {</span>
+			
+<span class="nc" id="L238">			firstNumber = 0;</span>
+<span class="nc" id="L239">			secondNumber = 0;</span>
+<span class="nc" id="L240">			txfFirstNumber.setText(&quot;&quot;);</span>
+<span class="nc" id="L241">			lblResult.setText(&quot;Result: &quot;);</span>
+<span class="nc" id="L242">			fieldCheck = false;</span>
+<span class="nc" id="L243">			btnStr=&quot;&quot;;</span>
+<span class="nc" id="L244">			btnTemp=null;</span>
+		}
+<span class="nc bnc" id="L246" title="All 8 branches missed.">	else if ((e.getSource() == btn0 || e.getSource() == btn1 || e.getSource() == btn2 || e.getSource() == btn3</span>
+<span class="nc bnc" id="L247" title="All 8 branches missed.">				|| e.getSource() == btn4 || e.getSource() == btn5 || e.getSource() == btn6 || e.getSource() == btn7</span>
+<span class="nc bnc" id="L248" title="All 6 branches missed.">				|| e.getSource() == btn8 || e.getSource() == btn9||e.getSource() == btnPoint)) {</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">			if (fieldCheck == false) {</span>
+<span class="nc" id="L250">				System.out.println(btnTemp.getText());</span>
+<span class="nc" id="L251">				txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());</span>
+<span class="nc" id="L252">				firstNumber = Double.valueOf(txfFirstNumber.getText());</span>
+			} else {
+<span class="nc" id="L254">				txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());</span>
+<span class="nc" id="L255">				btnStr = btnStr + btnTemp.getText();</span>
+<span class="nc" id="L256">				secondNumber = Double.valueOf(btnStr);</span>
+			}
+<span class="nc bnc" id="L258" title="All 2 branches missed.">		} else if (btnTemp != btnEqual) {</span>
+<span class="nc" id="L259">			txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());</span>
+<span class="nc" id="L260">			btnOperation = btnTemp;</span>
+<span class="nc" id="L261">			btnTemp = null;</span>
+<span class="nc" id="L262">			fieldCheck = true;</span>
+		}
+<span class="nc" id="L264">		System.out.println(firstNumber + &quot;&quot; + secondNumber);</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">		if (e.getSource() == btnEqual) {</span>
+
+<span class="nc bnc" id="L267" title="All 2 branches missed.">			if (btnOperation == btnAdd) {</span>
+
+				/*if (btnOperation == btnPoint) {
+					txfFirstNumber.setText(txfFirstNumber.getText() + &quot;.&quot;);
+				}*/
+<span class="nc" id="L272">				operationCheck = true;</span>
+<span class="nc" id="L273">				result = calculator.add(firstNumber, secondNumber);</span>
+<span class="nc" id="L274">				System.out.println(result);</span>
+			}
+
+<span class="nc bnc" id="L277" title="All 2 branches missed.">			if (btnOperation == btnSubtract) {</span>
+<span class="nc" id="L278">				result = calculator.subtract(firstNumber, secondNumber);</span>
+			}
+<span class="nc bnc" id="L280" title="All 2 branches missed.">			if (btnOperation == btnMultiply) {</span>
+<span class="nc" id="L281">				result = calculator.multiply(firstNumber, secondNumber);</span>
+			}
+
+<span class="nc bnc" id="L284" title="All 2 branches missed.">			if (btnOperation == btnDivide) {</span>
+<span class="nc" id="L285">				result = calculator.divide(firstNumber, secondNumber);</span>
+			}
+<span class="nc bnc" id="L287" title="All 2 branches missed.">			if (btnOperation == btnPow) {</span>
+<span class="nc" id="L288">				result = calculatorA.calculatepower(firstNumber, secondNumber);</span>
+			}
+		}
+<span class="nc bnc" id="L291" title="All 2 branches missed.">			if (btnOperation == btnSqr) {</span>
+<span class="nc" id="L292">				result = calculatorA.calculatesquart(firstNumber);</span>
+			}
+<span class="nc bnc" id="L294" title="All 2 branches missed.">			if (btnOperation == btnRND) {</span>
+
+<span class="nc" id="L296">				result = calculatorA.CalculateRound(firstNumber);</span>
+			}
+<span class="nc bnc" id="L298" title="All 2 branches missed.">			if (btnOperation == btnCos) {</span>
+<span class="nc" id="L299">				result = calculatorA.calculateCos(firstNumber);</span>
+			}
+<span class="nc bnc" id="L301" title="All 2 branches missed.">			if (btnOperation == btnSin) {</span>
+<span class="nc" id="L302">				result = calculatorA.CalculateSinus(firstNumber);</span>
+			}
+
+<span class="nc" id="L305">			lblResult.setText(&quot;Result: &quot; + result);</span>
+
+		
+<span class="nc" id="L308">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
