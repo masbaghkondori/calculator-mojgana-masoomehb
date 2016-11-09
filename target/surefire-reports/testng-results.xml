@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="19" passed="19">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="296" started-at="2016-11-09T19:18:07Z" finished-at="2016-11-09T19:18:07Z">
+    <groups>
+    </groups>
+    <test name="Surefire test" duration-ms="296" started-at="2016-11-09T19:18:07Z" finished-at="2016-11-09T19:18:07Z">
+      <class name="AdvanceCalculatorTest">
+        <test-method status="PASS" signature="testCos()[pri:0, instance:testCos(AdvanceCalculatorTest)]" name="testCos" duration-ms="32" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCos -->
+        <test-method status="PASS" signature="testLog()[pri:0, instance:testLog(AdvanceCalculatorTest)]" name="testLog" duration-ms="19" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLog -->
+        <test-method status="PASS" signature="testPow()[pri:0, instance:testPow(AdvanceCalculatorTest)]" name="testPow" duration-ms="14" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPow -->
+        <test-method status="PASS" signature="testSin()[pri:0, instance:testSin(AdvanceCalculatorTest)]" name="testSin" duration-ms="11" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSin -->
+        <test-method status="PASS" signature="testRoud()[pri:0, instance:testRoud(AdvanceCalculatorTest)]" name="testRoud" duration-ms="16" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRoud -->
+        <test-method status="PASS" signature="testSqrt()[pri:0, instance:testSqrt(AdvanceCalculatorTest)]" name="testSqrt" duration-ms="3" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSqrt -->
+        <test-method status="PASS" signature="testSinNegative()[pri:0, instance:testSinNegative(AdvanceCalculatorTest)]" name="testSinNegative" duration-ms="7" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSinNegative -->
+        <test-method status="PASS" signature="testRoudNegative()[pri:0, instance:testRoudNegative(AdvanceCalculatorTest)]" name="testRoudNegative" duration-ms="7" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRoudNegative -->
+        <test-method status="PASS" signature="testPowNegative()[pri:0, instance:testPowNegative(AdvanceCalculatorTest)]" name="testPowNegative" duration-ms="10" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPowNegative -->
+        <test-method status="PASS" signature="testCosNegativ()[pri:0, instance:testCosNegativ(AdvanceCalculatorTest)]" name="testCosNegativ" duration-ms="7" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCosNegativ -->
+        <test-method status="PASS" signature="testLogNegative()[pri:0, instance:testLogNegative(AdvanceCalculatorTest)]" name="testLogNegative" duration-ms="7" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogNegative -->
+      </class> <!-- AdvanceCalculatorTest -->
+      <class name="CalculatorTest">
+        <test-method status="PASS" signature="testAdd()[pri:0, instance:testAdd(CalculatorTest)]" name="testAdd" duration-ms="7" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAdd -->
+        <test-method status="PASS" signature="testSubtract()[pri:0, instance:testSubtract(CalculatorTest)]" name="testSubtract" duration-ms="5" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubtract -->
+        <test-method status="PASS" signature="testAdd2()[pri:0, instance:testAdd2(CalculatorTest)]" name="testAdd2" duration-ms="6" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAdd2 -->
+        <test-method status="PASS" signature="testAdd3()[pri:0, instance:testAdd3(CalculatorTest)]" name="testAdd3" duration-ms="5" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAdd3 -->
+        <test-method status="PASS" signature="testAdd4()[pri:0, instance:testAdd4(CalculatorTest)]" name="testAdd4" duration-ms="5" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAdd4 -->
+        <test-method status="PASS" signature="testDivide()[pri:0, instance:testDivide(CalculatorTest)]" name="testDivide" duration-ms="7" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDivide -->
+        <test-method status="PASS" signature="testMultiply()[pri:0, instance:testMultiply(CalculatorTest)]" name="testMultiply" duration-ms="5" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMultiply -->
+        <test-method status="PASS" signature="testDivideZero()[pri:0, instance:testDivideZero(CalculatorTest)]" name="testDivideZero" duration-ms="4" started-at="2016-11-09T20:18:07Z" finished-at="2016-11-09T20:18:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDivideZero -->
+      </class> <!-- CalculatorTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>
