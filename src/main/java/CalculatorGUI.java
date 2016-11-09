@@ -14,19 +14,15 @@ import javax.swing.JSpinner;
 public class CalculatorGUI implements ActionListener {
 	private JFrame frmCalculator;
 	private JTextField txfFirstNumber;
-	private JTextField txfSecondNumber;
 	private BasicCalculator calculator = new BasicCalculator();
 	private AdvanceCalculator calculatorA = new AdvanceCalculator();
 	private JLabel lblResult = new JLabel("Result:");
-	private JLabel lblFirstNumber = new JLabel("first number");
-	private JLabel lblSecondNumber = new JLabel("second number:");
 	private JButton btnAdd = new JButton("+");
 	private JButton btnSubtract = new JButton("-");
 	private JButton btnMultiply = new JButton("*");
 	private JButton btnDivide = new JButton("/");
 	private JButton btnPow = new JButton("POW");
 	private JButton btnSqr = new JButton("Sqr");
-	private JButton btnLog = new JButton("log");
 	private JButton btnRND = new JButton("RND");
 	private JButton btnCos = new JButton("Cos");
 	private JButton btnSin = new JButton("Sin");
@@ -42,6 +38,7 @@ public class CalculatorGUI implements ActionListener {
 	private final JButton btn8 = new JButton("8");
 	private final JButton btn9 = new JButton("9");
 	private final JButton btnEqual = new JButton("=");
+	private double result = 0;
 
 	/**
 	 * Create the application.
@@ -64,21 +61,11 @@ public class CalculatorGUI implements ActionListener {
 		frmCalculator.getContentPane().setLayout(null);
 
 		txfFirstNumber = new JTextField();
-		txfFirstNumber.setBounds(116, 27, 108, 20);
+		txfFirstNumber.setBounds(22, 27, 241, 39);
 		txfFirstNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		frmCalculator.getContentPane().add(txfFirstNumber);
 		txfFirstNumber.setColumns(10);
-
-		txfSecondNumber = new JTextField();
-		txfSecondNumber.setBounds(116, 58, 108, 20);
-		txfSecondNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
-
-		frmCalculator.getContentPane().add(txfSecondNumber);
-		txfSecondNumber.setColumns(10);
-
-		lblFirstNumber.setBounds(10, 30, 96, 14);
-		lblSecondNumber.setBounds(10, 61, 96, 14);
 		lblResult.setBounds(10, 86, 223, 14);
 
 		btnAdd.setBounds(10, 139, 47, 23);
@@ -99,9 +86,6 @@ public class CalculatorGUI implements ActionListener {
 		btnSqr.setBounds(67, 179, 47, 23);
 		btnSqr.setMargin(new Insets(0, 0, 0, 0));
 		btnSqr.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLog.setBounds(67, 179, 47, 23);
-		btnLog.setMargin(new Insets(0, 0, 0, 0));
-		btnLog.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRND.setBounds(125, 179, 47, 23);
 		btnRND.setMargin(new Insets(0, 0, 0, 0));
 		btnRND.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -111,7 +95,7 @@ public class CalculatorGUI implements ActionListener {
 		btnSin.setBounds(241, 139, 47, 23);
 		btnSin.setMargin(new Insets(0, 0, 0, 0));
 		btnSin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnPoint.setBounds(241, 179, 40, 25);
+		btnPoint.setBounds(86, 350, 48, 25);
 		btnPoint.setMargin(new Insets(0, 0, 0, 0));
 		btnPoint.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btn0.setBounds(9, 350, 48, 25);
@@ -147,6 +131,9 @@ public class CalculatorGUI implements ActionListener {
 		btnEqual.setBounds(241, 239, 40, 130);
 		btnEqual.setMargin(new Insets(0, 0, 0, 0));
 		btnEqual.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnClean.setBounds(143, 350, 48, 25);
+		btnClean.setMargin(new Insets(0, 0, 0, 0));
+		btnClean.setFont(new Font("Tahoma", Font.BOLD, 20));
 		frmCalculator.setVisible(true);
 	}
 
@@ -157,8 +144,6 @@ public class CalculatorGUI implements ActionListener {
 	 * @return none
 	 */
 	public void addComponentsToFrame() {
-		frmCalculator.getContentPane().add(lblFirstNumber);
-		frmCalculator.getContentPane().add(lblSecondNumber);
 		frmCalculator.getContentPane().add(lblResult);
 		frmCalculator.getContentPane().add(btnAdd);
 		frmCalculator.getContentPane().add(btnSubtract);
@@ -166,7 +151,6 @@ public class CalculatorGUI implements ActionListener {
 		frmCalculator.getContentPane().add(btnDivide);
 		frmCalculator.getContentPane().add(btnPow);
 		frmCalculator.getContentPane().add(btnSqr);
-		frmCalculator.getContentPane().add(btnLog);
 		frmCalculator.getContentPane().add(btnRND);
 		frmCalculator.getContentPane().add(btnCos);
 		frmCalculator.getContentPane().add(btnSin);
@@ -181,9 +165,14 @@ public class CalculatorGUI implements ActionListener {
 		frmCalculator.getContentPane().add(btn7);
 		frmCalculator.getContentPane().add(btn8);
 		frmCalculator.getContentPane().add(btn9);
-		btnNewButton.setBounds(251, 242, 30, 100);
+		frmCalculator.getContentPane().add(btnEqual);
+		frmCalculator.getContentPane().add(btnLog);
+		frmCalculator.getContentPane().add(btnClean);
+		
+		btnLog.setMargin(new Insets(0, 0, 0, 0));
+		btnLog.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLog.setBounds(241, 179, 47, 23);
 
-		frmCalculator.getContentPane().add(btnNewButton);
 	}
 
 	public void addActionListeners() {
@@ -193,7 +182,6 @@ public class CalculatorGUI implements ActionListener {
 		btnDivide.addActionListener(this);
 		btnPow.addActionListener(this);
 		btnSqr.addActionListener(this);
-		btnLog.addActionListener(this);
 		btnRND.addActionListener(this);
 		btnCos.addActionListener(this);
 		btnSin.addActionListener(this);
@@ -208,6 +196,8 @@ public class CalculatorGUI implements ActionListener {
 		btn8.addActionListener(this);
 		btn9.addActionListener(this);
 		btnEqual.addActionListener(this);
+		btnClean.addActionListener(this);
+		btnPoint.addActionListener(this);
 
 	}
 
@@ -217,95 +207,103 @@ public class CalculatorGUI implements ActionListener {
 	 * 
 	 * @return firstNUmber - Number that is written in the textfield
 	 **/
-	public double getValueFromTextField1() {
-		double firstNumber = 0.0;
-		firstNumber = Double.valueOf(txfFirstNumber.getText());
-		return firstNumber;
-	}
+	/*
+	 * public double getValueFromTextField1() { double firstNumber = 0.0;
+	 * firstNumber = Double.valueOf(txfFirstNumber.getText()); return
+	 * firstNumber; }
+	 */
 
-	public double getValueFromTextField2() {
-		double secondNumber = 0.0;
-		secondNumber = Double.valueOf(txfSecondNumber.getText());
-		return secondNumber;
-	}
+	/*
+	 * public double getValueFromTextField2() { double secondNumber = 0.0;
+	 * secondNumber = Double.valueOf(txfSecondNumber.getText()); return
+	 * secondNumber; }
+	 */
 
 	private String btnStr = "";
 	private boolean operationCheck = true;
 	private boolean fieldCheck = false;
 	private JButton btnTemp2;
 	private final JButton btnNewButton = new JButton("=");
+	private double secondNumber = 0.0;
+	private double firstNumber = 0.0;
+	private JButton btnOperation = null;
+	private final JButton btnClean = new JButton("C");
+	private final JButton btnLog = new JButton("Log");
 
 	public void actionPerformed(ActionEvent e) {
 		Object JButton;
 		JButton btnTemp = (JButton) e.getSource();
-
-		Object Object;
-		if ((e.getSource() == btn0 || e.getSource() == btn1 || e.getSource() == btn2 || e.getSource() == btn3
-				|| e.getSource() == btn4 || e.getSource() == btn5 || e.getSource() == btn6 || e.getSource() == btn7
-				|| e.getSource() == btn8 || e.getSource() == btn9)) {
-			if (fieldCheck == false) {
-				txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());
-
-			} else
-
-			{
-				txfSecondNumber.setText(txfSecondNumber.getText() + btnTemp.getText());
-			}
-		
-		}else
-		{fieldCheck=true;}
-
-		if (e.getSource() == btnAdd) {
+		if (e.getSource() == btnClean) {
 			
-			operationCheck = true;
-			double result = calculator.add(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: " + result);
+			firstNumber = 0;
+			secondNumber = 0;
+			txfFirstNumber.setText("");
+			lblResult.setText("Result: ");
+			fieldCheck = false;
+			btnStr="";
+			btnTemp=null;
 		}
+	else if ((e.getSource() == btn0 || e.getSource() == btn1 || e.getSource() == btn2 || e.getSource() == btn3
+				|| e.getSource() == btn4 || e.getSource() == btn5 || e.getSource() == btn6 || e.getSource() == btn7
+				|| e.getSource() == btn8 || e.getSource() == btn9||e.getSource() == btnPoint)) {
+			if (fieldCheck == false) {
+				System.out.println(btnTemp.getText());
+				txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());
+				firstNumber = Double.valueOf(txfFirstNumber.getText());
+			} else {
+				txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());
+				btnStr = btnStr + btnTemp.getText();
+				secondNumber = Double.valueOf(btnStr);
+			}
+		} else if (btnTemp != btnEqual) {
+			txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());
+			btnOperation = btnTemp;
+			btnTemp = null;
+			fieldCheck = true;
+		}
+		System.out.println(firstNumber + "" + secondNumber);
+		if (e.getSource() == btnEqual) {
 
-		if (e.getSource() == btnSubtract) {
-			double result = calculator.subtract(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: " + result);
-		}
+			if (btnOperation == btnAdd) {
 
-		if (e.getSource() == btnMultiply) {
-			double result = calculator.multiply(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: " + result);
-		}
+				/*if (btnOperation == btnPoint) {
+					txfFirstNumber.setText(txfFirstNumber.getText() + ".");
+				}*/
+				operationCheck = true;
+				result = calculator.add(firstNumber, secondNumber);
+				System.out.println(result);
+			}
 
-		if (e.getSource() == btnDivide) {
-			double result = calculator.divide(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: " + result);
-		}
+			if (btnOperation == btnSubtract) {
+				result = calculator.subtract(firstNumber, secondNumber);
+			}
+			if (btnOperation == btnMultiply) {
+				result = calculator.multiply(firstNumber, secondNumber);
+			}
 
-		if (e.getSource() == btnPow) {
-			double result = calculatorA.calculatepower(getValueFromTextField1(), getValueFromTextField2());
-			lblResult.setText("Result: " + result);
+			if (btnOperation == btnDivide) {
+				result = calculator.divide(firstNumber, secondNumber);
+			}
+			if (btnOperation == btnPow) {
+				result = calculatorA.calculatepower(firstNumber, secondNumber);
+			}
 		}
-		if (e.getSource() == btnSqr) {
-			double result = calculatorA.calculatesquart(getValueFromTextField1());
-			lblResult.setText("Result: " + result);
-		}
-		if (e.getSource() == btnLog) {
-			double result = calculatorA.CalculateLog(getValueFromTextField1());
-			lblResult.setText("Result: " + result);
-		}
-		if (e.getSource() == btnRND) {
+			if (btnOperation == btnSqr) {
+				result = calculatorA.calculatesquart(firstNumber);
+			}
+			if (btnOperation == btnRND) {
 
-			double result = calculatorA.CalculateRound(getValueFromTextField1());
+				result = calculatorA.CalculateRound(firstNumber);
+			}
+			if (btnOperation == btnCos) {
+				result = calculatorA.calculateCos(firstNumber);
+			}
+			if (btnOperation == btnSin) {
+				result = calculatorA.CalculateSinus(firstNumber);
+			}
+
 			lblResult.setText("Result: " + result);
-		}
-		if (e.getSource() == btnCos) {
-			double result = calculatorA.calculateCos(getValueFromTextField1());
-			lblResult.setText("Result: " + result);
-		}
-		if (e.getSource() == btnSin) {
-			double result = calculatorA.CalculateSinus(getValueFromTextField1());
-			lblResult.setText("Result: " + result);
-		}
-		if (e.getSource() == btnPoint) {
-			txfFirstNumber.setText(txfFirstNumber.getText() + ".");
-		}
+
 		
 	}
-
 }
