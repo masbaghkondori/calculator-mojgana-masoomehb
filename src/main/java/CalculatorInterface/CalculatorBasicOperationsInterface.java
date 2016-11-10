@@ -1,10 +1,10 @@
+package CalculatorInterface;
 
 /**
  * @author Mojgan
  *Interface CalculatorBasicOperationsInterface with four basic math operation methods: addition, subtraction, multiplication,division 
  */
 
-package CalculatorInterface;
 
 public interface CalculatorBasicOperationsInterface {
 
