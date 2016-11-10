@@ -1,11 +1,11 @@
+package CalculatorInterface;
 
 /**
 	 * @author Mojgan
 	 *Interface CalculatorAdvancedOperationsInterface with six advance math operation methods 
 	 *
 	 */
-	
-package CalculatorInterface;
+
 
 public interface CalculatorAdvancedOperationsInterface {
 		public double calculatesquart(double firstNumber);

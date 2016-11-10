@@ -30,5 +30,6 @@ public class BasicCalculator implements CalculatorBasicOperationsInterface  {
 			
 			return result;
 		}
+
 		
 }
