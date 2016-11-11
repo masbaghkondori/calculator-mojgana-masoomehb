@@ -1,7 +1,5 @@
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -9,24 +7,37 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.JSpinner;
+
+/**
+ * * @author Mojgan-Masoomeh Baghban
+ * 
+ * 
+ * Class CalculatorGUI for creating the GUI, This class implements
+ * ActionListener
+ * 
+ * 
+ * @version 1.0
+ **/
 
 public class CalculatorGUI implements ActionListener {
 	private JFrame frmCalculator;
 	private JTextField txfFirstNumber;
-	private BasicCalculator calculator = new BasicCalculator();
-	private AdvanceCalculator calculatorA = new AdvanceCalculator();
-	private JLabel lblResult = new JLabel("Result:");
-	private JButton btnAdd = new JButton("+");
-	private JButton btnSubtract = new JButton("-");
-	private JButton btnMultiply = new JButton("*");
-	private JButton btnDivide = new JButton("/");
-	private JButton btnPow = new JButton("POW");
-	private JButton btnSqr = new JButton("Sqr");
-	private JButton btnRND = new JButton("RND");
-	private JButton btnCos = new JButton("Cos");
-	private JButton btnSin = new JButton("Sin");
-	private JButton btnPoint = new JButton(".");
+	private final BasicCalculator calculator = new BasicCalculator();
+	private final AdvanceCalculator calculatorA = new AdvanceCalculator();
+	private final JLabel lblResult = new JLabel("Result:");
+	private final JButton btnAdd = new JButton("+");
+	private final JButton btnSubtract = new JButton("-");
+	private final JButton btnMultiply = new JButton("*");
+	private final JButton btnDivide = new JButton("/");
+	private final JButton btnPow = new JButton("POW");
+	private final JButton btnSqr = new JButton("Sqr");
+	private final JButton btnRND = new JButton("RND");
+	private final JButton btnCos = new JButton("Cos");
+	private final JButton btnSin = new JButton("Sin");
+	private final JButton btnClean = new JButton("C");
+	private final JButton btnLog = new JButton("Log");
+	private final JButton btnEqual = new JButton("=");
+	private final JButton btnPoint = new JButton(".");
 	private final JButton btn0 = new JButton("0");
 	private final JButton btn1 = new JButton("1");
 	private final JButton btn2 = new JButton("2");
@@ -37,11 +48,21 @@ public class CalculatorGUI implements ActionListener {
 	private final JButton btn7 = new JButton("7");
 	private final JButton btn8 = new JButton("8");
 	private final JButton btn9 = new JButton("9");
-	private final JButton btnEqual = new JButton("=");
+
+	private String btnStr = "";
+	private boolean fieldCheck1 = false;
+	private double secondNumber = 0.0;
+	private double firstNumber = 0.0;
+	private JButton btnOperation = null;
+
 	private double result = 0;
 
 	/**
-	 * Create the application.
+	 * Constructor of the CalculatorGUI that invokes the method
+	 * createAndShowGUI(), addComponentsToFrame() and addActionListeners().
+	 * 
+	 * @param none
+	 * @return none
 	 */
 	public CalculatorGUI() {
 		createAndShowGUI();
@@ -50,7 +71,8 @@ public class CalculatorGUI implements ActionListener {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializing the contents of the frame. Generating all buttons, setting
+	 * fonts, margins and Names
 	 */
 	private void createAndShowGUI() {
 		frmCalculator = new JFrame();
@@ -66,8 +88,9 @@ public class CalculatorGUI implements ActionListener {
 
 		frmCalculator.getContentPane().add(txfFirstNumber);
 		txfFirstNumber.setColumns(10);
+		lblResult.setForeground(new Color(0, 0, 255));
 		lblResult.setBounds(10, 86, 223, 14);
-
+		lblResult.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAdd.setBounds(10, 139, 47, 23);
 		btnAdd.setMargin(new Insets(0, 0, 0, 0));
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -82,22 +105,23 @@ public class CalculatorGUI implements ActionListener {
 		btnDivide.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnPow.setBounds(10, 179, 47, 23);
 		btnPow.setMargin(new Insets(0, 0, 0, 0));
-		btnPow.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnPow.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSqr.setBounds(67, 179, 47, 23);
 		btnSqr.setMargin(new Insets(0, 0, 0, 0));
 		btnSqr.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRND.setBounds(125, 179, 47, 23);
 		btnRND.setMargin(new Insets(0, 0, 0, 0));
-		btnRND.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRND.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnCos.setBounds(182, 179, 47, 23);
 		btnCos.setMargin(new Insets(0, 0, 0, 0));
 		btnCos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnSin.setBounds(241, 139, 47, 23);
 		btnSin.setMargin(new Insets(0, 0, 0, 0));
 		btnSin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnPoint.setBounds(86, 350, 48, 25);
-		btnPoint.setMargin(new Insets(0, 0, 0, 0));
-		btnPoint.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnLog.setMargin(new Insets(0, 0, 0, 0));
+		btnLog.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLog.setBounds(241, 179, 47, 23);
+
 		btn0.setBounds(9, 350, 48, 25);
 		btn0.setMargin(new Insets(0, 0, 0, 0));
 		btn0.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -134,11 +158,14 @@ public class CalculatorGUI implements ActionListener {
 		btnClean.setBounds(143, 350, 48, 25);
 		btnClean.setMargin(new Insets(0, 0, 0, 0));
 		btnClean.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnPoint.setMargin(new Insets(0, 0, 0, 0));
+		btnPoint.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnPoint.setBounds(76, 350, 48, 25);
 		frmCalculator.setVisible(true);
 	}
 
 	/**
-	 * Addind components to frame.
+	 * Adding components to the frame.
 	 * 
 	 * @param none
 	 * @return none
@@ -154,7 +181,7 @@ public class CalculatorGUI implements ActionListener {
 		frmCalculator.getContentPane().add(btnRND);
 		frmCalculator.getContentPane().add(btnCos);
 		frmCalculator.getContentPane().add(btnSin);
-		frmCalculator.getContentPane().add(btnPoint);
+		frmCalculator.getContentPane().add(btnLog);
 		frmCalculator.getContentPane().add(btn0);
 		frmCalculator.getContentPane().add(btn1);
 		frmCalculator.getContentPane().add(btn2);
@@ -166,15 +193,17 @@ public class CalculatorGUI implements ActionListener {
 		frmCalculator.getContentPane().add(btn8);
 		frmCalculator.getContentPane().add(btn9);
 		frmCalculator.getContentPane().add(btnEqual);
-		frmCalculator.getContentPane().add(btnLog);
 		frmCalculator.getContentPane().add(btnClean);
-		
-		btnLog.setMargin(new Insets(0, 0, 0, 0));
-		btnLog.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLog.setBounds(241, 179, 47, 23);
-
+		frmCalculator.getContentPane().add(btnPoint);
 	}
 
+	/**
+	 * Adding actionlistener to the buttons.
+	 * 
+	 * @param e
+	 *
+	 * @return none
+	 */
 	public void addActionListeners() {
 		btnAdd.addActionListener(this);
 		btnSubtract.addActionListener(this);
@@ -185,6 +214,7 @@ public class CalculatorGUI implements ActionListener {
 		btnRND.addActionListener(this);
 		btnCos.addActionListener(this);
 		btnSin.addActionListener(this);
+		btnLog.addActionListener(this);
 		btn0.addActionListener(this);
 		btn1.addActionListener(this);
 		btn2.addActionListener(this);
@@ -198,55 +228,41 @@ public class CalculatorGUI implements ActionListener {
 		btnEqual.addActionListener(this);
 		btnClean.addActionListener(this);
 		btnPoint.addActionListener(this);
-
 	}
 
 	/**
-	 *
-	 * get value from text field
+	 * Implementation of the action performed for handling the actions on the
+	 * calculator
 	 * 
-	 * @return firstNUmber - Number that is written in the textfield
-	 **/
-	/*
-	 * public double getValueFromTextField1() { double firstNumber = 0.0;
-	 * firstNumber = Double.valueOf(txfFirstNumber.getText()); return
-	 * firstNumber; }
+	 * @param e
+	 *
+	 * @return none
 	 */
-
-	/*
-	 * public double getValueFromTextField2() { double secondNumber = 0.0;
-	 * secondNumber = Double.valueOf(txfSecondNumber.getText()); return
-	 * secondNumber; }
-	 */
-
-	private String btnStr = "";
-	private boolean operationCheck = true;
-	private boolean fieldCheck = false;
-	private JButton btnTemp2;
-	private final JButton btnNewButton = new JButton("=");
-	private double secondNumber = 0.0;
-	private double firstNumber = 0.0;
-	private JButton btnOperation = null;
-	private final JButton btnClean = new JButton("C");
-	private final JButton btnLog = new JButton("Log");
-
 	public void actionPerformed(ActionEvent e) {
 		Object JButton;
 		JButton btnTemp = (JButton) e.getSource();
+		result = 0.0;
 		if (e.getSource() == btnClean) {
-			
 			firstNumber = 0;
 			secondNumber = 0;
+			result = 0.0;
 			txfFirstNumber.setText("");
 			lblResult.setText("Result: ");
-			fieldCheck = false;
-			btnStr="";
-			btnTemp=null;
+			fieldCheck1 = false;
+			btnStr = "";
+			btnTemp = null;
 		}
-	else if ((e.getSource() == btn0 || e.getSource() == btn1 || e.getSource() == btn2 || e.getSource() == btn3
+
+		/**
+		 * This 'if' gets a number, then by assigning false to 'fieldCheck1'
+		 * checks if the number is the first number or second number and assigns
+		 * the numbers to 'firstnumber' or 'secondnumber'.
+		 */
+		else if ((e.getSource() == btn0 || e.getSource() == btn1 || e.getSource() == btn2 || e.getSource() == btn3
 				|| e.getSource() == btn4 || e.getSource() == btn5 || e.getSource() == btn6 || e.getSource() == btn7
-				|| e.getSource() == btn8 || e.getSource() == btn9||e.getSource() == btnPoint)) {
-			if (fieldCheck == false) {
+				|| e.getSource() == btn8 || e.getSource() == btn9 || e.getSource() == btnPoint)) {
+
+			if (fieldCheck1 == false) {
 				System.out.println(btnTemp.getText());
 				txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());
 				firstNumber = Double.valueOf(txfFirstNumber.getText());
@@ -255,23 +271,28 @@ public class CalculatorGUI implements ActionListener {
 				btnStr = btnStr + btnTemp.getText();
 				secondNumber = Double.valueOf(btnStr);
 			}
+
+			/**
+			 * This if checks if a entered button is an operator, then saves the
+			 * operation in a variable in order to use it after entering
+			 * 'secondnumber'
+			 */
 		} else if (btnTemp != btnEqual) {
 			txfFirstNumber.setText(txfFirstNumber.getText() + btnTemp.getText());
 			btnOperation = btnTemp;
 			btnTemp = null;
-			fieldCheck = true;
+			fieldCheck1 = true;
 		}
 		System.out.println(firstNumber + "" + secondNumber);
+
+		/**
+		 * This if checks '=' and after getting '=' it starts to executing
+		 * operations.
+		 * */
 		if (e.getSource() == btnEqual) {
 
 			if (btnOperation == btnAdd) {
-
-				/*if (btnOperation == btnPoint) {
-					txfFirstNumber.setText(txfFirstNumber.getText() + ".");
-				}*/
-				operationCheck = true;
 				result = calculator.add(firstNumber, secondNumber);
-				System.out.println(result);
 			}
 
 			if (btnOperation == btnSubtract) {
@@ -287,13 +308,16 @@ public class CalculatorGUI implements ActionListener {
 			if (btnOperation == btnPow) {
 				result = calculatorA.calculatepower(firstNumber, secondNumber);
 			}
-		}
 			if (btnOperation == btnSqr) {
 				result = calculatorA.calculatesquart(firstNumber);
 			}
 			if (btnOperation == btnRND) {
 
 				result = calculatorA.CalculateRound(firstNumber);
+			}
+			if (btnOperation == btnLog) {
+
+				result = calculatorA.CalculateLog(firstNumber);
 			}
 			if (btnOperation == btnCos) {
 				result = calculatorA.calculateCos(firstNumber);
@@ -304,7 +328,6 @@ public class CalculatorGUI implements ActionListener {
 
 			lblResult.setText("Result: " + result);
 
-		
+		}
 	}
 }
-
